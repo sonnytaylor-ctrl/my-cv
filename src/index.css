@@ -337,6 +337,11 @@ body::-webkit-scrollbar { width: 0; }
   .panel--hero, .panel--contact {
     padding: 60px 5vw 40px;
     gap: 20px;
+    flex-direction: column-reverse;
+  }
+
+  .panel--hero {
+    flex-direction: column;
   }
 
   .panel--section {
@@ -344,8 +349,9 @@ body::-webkit-scrollbar { width: 0; }
   }
 
   .photo-frame {
-    width: min(70vw, 280px);
-    height: min(70vw, 280px);
+    width: min(70vw, 140px);
+    height: min(70vw, 140px);
+    margin: 0 auto;
   }
 
   .text-block {
