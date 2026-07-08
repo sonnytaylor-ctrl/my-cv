@@ -318,6 +318,16 @@ body::-webkit-scrollbar { width: 0; }
     text-align: center;
   }
 
+  /* Center the flex children (email link uses align-self: flex-start otherwise) */
+  .panel--hero .text-block,
+  .panel--contact .text-block {
+    align-items: center;
+  }
+
+  .panel--contact .contact-link {
+    align-self: center;
+  }
+
   .panel--section {
     padding: 0 3vw;
   }
