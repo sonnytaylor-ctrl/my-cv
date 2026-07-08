@@ -308,50 +308,22 @@ body::-webkit-scrollbar { width: 0; }
 }
 
 /* ════════════════════════════════════════════════ *
- *  PHONES (< 768px) - VERTICAL SCROLLING LAYOUT
+ *  PHONES (< 768px) - MAINTAIN HORIZONTAL SCROLL
  * ════════════════════════════════════════════════ */
 @media (max-width: 767px) {
-  html, body {
-    overflow-x: auto;
-  }
-
-  .pin-wrap {
-    position: relative;
-  }
-
-  .track {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    will-change: auto;
-  }
-
-  .panel {
-    width: 100vw;
-    height: auto;
-    flex-direction: column;
-    padding: 40px 0;
-    gap: 24px;
-  }
-
   .panel--hero, .panel--contact {
-    padding: 60px 5vw 40px;
-    gap: 20px;
-    flex-direction: column-reverse;
-  }
-
-  .panel--hero {
-    flex-direction: column;
+    justify-content: center;
+    gap: 3vw;
+    padding: 0 3vw;
   }
 
   .panel--section {
-    padding: 50px 5vw 40px;
+    padding: 0 3vw;
   }
 
   .photo-frame {
-    width: min(70vw, 140px);
-    height: min(70vw, 140px);
-    margin: 0 auto;
+    width: min(50vw, 140px);
+    height: min(50vw, 140px);
   }
 
   .text-block {
