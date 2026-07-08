@@ -140,8 +140,8 @@ body::-webkit-scrollbar { width: 0; }
 .panel--hero, .panel--contact { justify-content: center; gap: 6vw; padding: 0 7vw; }
 .panel--section { padding: 0 10vw; }
 .photo-frame {
-  position: relative; width: min(36vw, 60vh); height: 66vh; flex: none;
-  background: #111111; border-radius: 320px 320px 18px 18px; overflow: hidden;
+  position: relative; width: min(48vw, 48vh); height: min(48vw, 48vh); flex: none;
+  background: #111111; border-radius: 50%; overflow: hidden;
   box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 30px rgba(57, 255, 20, 0.2);
 }
 .photo-filter {
@@ -152,7 +152,7 @@ body::-webkit-scrollbar { width: 0; }
 .photo-frame-inset {
   position: absolute; inset: 0;
   box-shadow: inset 0 0 0 2px rgba(57, 255, 20, 0.8);
-  border-radius: 320px 320px 18px 18px; pointer-events: none;
+  border-radius: 50%; pointer-events: none;
 }
 .text-block { display: flex; flex-direction: column; gap: 30px; max-width: 620px; }
 .section-block { display: flex; flex-direction: column; gap: 34px; max-width: 760px; margin: 0 auto; position: relative; }
