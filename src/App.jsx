@@ -38,7 +38,7 @@ function App() {
     {
       id: 'outside',
       label: 'Outside',
-      body: 'Outside of work I am a music-obsessed father, a podcaster, a gamer and a devoted consumer of horror. I could go on for ages honestly but we can do that over a beer?.. or Coffee? I definitely mean Coffee.'
+      body: 'Outside of work I am a music-obsessed father, a gamer and a devoted consumer of horror. I could go on for ages honestly but we can do that over a beer?.. or Coffee? I definitely mean Coffee.'
     }
   ];
 
