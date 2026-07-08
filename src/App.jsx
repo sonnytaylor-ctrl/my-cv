@@ -61,9 +61,15 @@ function App() {
     const wrap = document.getElementById('pinWrap');
     const track = document.getElementById('track');
     const panels = gsap.utils.toArray('[data-panel]');
-    
+
+    // Calculate actual panel width (accounts for mobile 150vw panels)
+    const getPanelWidth = () => {
+      if (panels.length === 0) return window.innerWidth;
+      return panels[0].offsetWidth;
+    };
+
     // Exact panel-based scroll distance computation to prevent infinite scrolling
-    const dist = () => (panels.length - 1) * window.innerWidth;
+    const dist = () => (panels.length - 1) * getPanelWidth();
 
     /* ── Master horizontal scroll ── */
     const scrollTween = gsap.to(track, {
@@ -108,12 +114,14 @@ function App() {
       );
     });
 
-    /* ── Scrub-linked drift on marked elements ── */
+    /* ── Scrub-linked drift on marked elements (skip hero) ── */
     gsap.utils.toArray('[data-drift]').forEach((el) => {
-      const amt = parseFloat(el.dataset.drift || '0');
-      const rot = parseFloat(el.dataset.rot || '0');
       const panel = el.closest('[data-panel]');
       if (!panel) return;
+      if (panel.id === 'panel-hero') return; // Skip hero - keep centered
+
+      const amt = parseFloat(el.dataset.drift || '0');
+      const rot = parseFloat(el.dataset.rot || '0');
       gsap.fromTo(el,
         { x: amt, rotation: rot },
         {
