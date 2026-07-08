@@ -311,6 +311,10 @@ body::-webkit-scrollbar { width: 0; }
  *  PHONES (< 768px) - MAINTAIN HORIZONTAL SCROLL
  * ════════════════════════════════════════════════ */
 @media (max-width: 767px) {
+  .panel {
+    width: 150vw;
+  }
+
   .panel--hero, .panel--contact {
     justify-content: center;
     gap: 3vw;
@@ -397,13 +401,13 @@ body::-webkit-scrollbar { width: 0; }
 
   .music-widget {
     position: fixed;
-    bottom: auto;
-    top: 50%;
+    bottom: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: 92;
-    width: 90vw;
-    max-width: 300px;
+    transform: translateX(-50%) translateY(50%);
+    z-index: 99;
+    width: 85vw;
+    max-width: 280px;
+    pointer-events: auto;
   }
 
   .music-widget p {
