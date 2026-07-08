@@ -78,7 +78,7 @@ function App() {
       scrollTrigger: {
         trigger: wrap,
         start: 'top top',
-        end: () => '+=' + dist() * 0.6,
+        end: () => '+=' + dist() * 0.75,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
