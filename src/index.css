@@ -47,7 +47,7 @@ body::-webkit-scrollbar { width: 0; }
   display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 44px;
   animation: preloaderOut 0.9s ease 2.6s forwards; pointer-events: none;
 }
-.preloader-bars { display: flex; gap: 9px; height: 110px; align-items: flex-start; }
+.preloader-bars { display: none; gap: 9px; height: 110px; align-items: flex-start; }
 .preloader-bar {
   width: 6px;
   background: #39ff14;
