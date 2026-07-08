@@ -209,3 +209,226 @@ body::-webkit-scrollbar { width: 0; }
   text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
   border-bottom-color: #ffffff;
 }
+
+/* ════════════════════════════════════════════════ *
+ *  MOBILE RESPONSIVENESS (< 1024px)
+ * ════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  .frame-border {
+    inset: 8px;
+    border-radius: 12px;
+  }
+  .frame-top-label {
+    font-size: 10px;
+    padding: 2px 16px 4px;
+  }
+  .frame-bottom-bar {
+    padding: 4px 16px 3px;
+  }
+  .progress-track {
+    width: 100px;
+  }
+  .music-widget {
+    left: 12px;
+    bottom: 12px;
+    width: 260px;
+  }
+  .music-widget p {
+    font-size: 14px;
+  }
+  .panel--hero, .panel--contact {
+    flex-direction: column;
+    gap: 3vw;
+    padding: 0 5vw;
+    justify-content: center;
+  }
+  .panel--section {
+    padding: 0 5vw;
+  }
+  .photo-frame {
+    width: min(60vw, 60vh);
+    height: min(60vw, 60vh);
+  }
+  .text-block {
+    gap: 20px;
+    max-width: 90vw;
+  }
+  .label {
+    font-size: 12px;
+  }
+  .heading {
+    font-size: clamp(36px, 6vw, 72px);
+  }
+  .heading--section {
+    font-size: clamp(32px, 5vw, 60px);
+  }
+  .body-text {
+    font-size: clamp(16px, 1.8vw, 22px);
+  }
+  .body-text--hero {
+    font-size: clamp(14px, 1.6vw, 18px);
+  }
+  .scroll-hint {
+    font-size: 12px;
+  }
+  .contact-link {
+    font-size: clamp(16px, 2vw, 22px);
+  }
+}
+
+/* ════════════════════════════════════════════════ *
+ *  SMALL TABLETS & LARGE PHONES (768px - 1023px)
+ * ════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .frame-border {
+    inset: 6px;
+    border-radius: 10px;
+  }
+  .music-widget {
+    width: 240px;
+    left: 8px;
+    bottom: 8px;
+  }
+  .photo-frame {
+    width: min(70vw, 70vh);
+    height: min(70vw, 70vh);
+  }
+  .text-block {
+    gap: 16px;
+  }
+  .heading {
+    font-size: clamp(28px, 5vw, 48px);
+  }
+  .heading--section {
+    font-size: clamp(24px, 4.5vw, 40px);
+  }
+  .body-text {
+    font-size: clamp(14px, 1.6vw, 18px);
+  }
+}
+
+/* ════════════════════════════════════════════════ *
+ *  PHONES (< 768px) - VERTICAL SCROLLING LAYOUT
+ * ════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  html, body {
+    overflow-x: auto;
+  }
+
+  .pin-wrap {
+    position: relative;
+  }
+
+  .track {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    will-change: auto;
+  }
+
+  .panel {
+    width: 100vw;
+    height: auto;
+    flex-direction: column;
+    padding: 40px 0;
+    gap: 24px;
+  }
+
+  .panel--hero, .panel--contact {
+    padding: 60px 5vw 40px;
+    gap: 20px;
+  }
+
+  .panel--section {
+    padding: 50px 5vw 40px;
+  }
+
+  .photo-frame {
+    width: min(70vw, 280px);
+    height: min(70vw, 280px);
+  }
+
+  .text-block {
+    max-width: 100%;
+    gap: 16px;
+  }
+
+  .section-block {
+    gap: 24px;
+  }
+
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+  }
+
+  .heading {
+    font-size: clamp(24px, 8vw, 44px);
+    line-height: 1;
+  }
+
+  .heading--section {
+    font-size: clamp(20px, 7vw, 36px);
+  }
+
+  .divider {
+    width: 50px;
+  }
+
+  .body-text {
+    font-size: clamp(13px, 3.5vw, 16px);
+    line-height: 1.6;
+  }
+
+  .body-text--hero {
+    font-size: clamp(12px, 3.2vw, 15px);
+    max-width: 50ch;
+  }
+
+  .scroll-hint {
+    font-size: 11px;
+  }
+
+  .contact-link {
+    font-size: clamp(14px, 3vw, 18px);
+  }
+
+  .frame-border {
+    inset: 4px;
+    border-radius: 8px;
+  }
+
+  .frame-top-label {
+    font-size: 9px;
+    padding: 2px 12px 3px;
+  }
+
+  .frame-bottom-bar {
+    padding: 3px 12px 2px;
+    gap: 10px;
+  }
+
+  .frame-bottom-bar span:first-child {
+    font-size: 10px;
+  }
+
+  .progress-track {
+    width: 80px;
+    height: 1px;
+  }
+
+  .music-widget {
+    position: fixed;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 92;
+    width: 90vw;
+    max-width: 300px;
+  }
+
+  .music-widget p {
+    font-size: 12px;
+  }
+}
