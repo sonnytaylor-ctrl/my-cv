@@ -311,10 +311,6 @@ body::-webkit-scrollbar { width: 0; }
  *  PHONES (< 768px) - MAINTAIN HORIZONTAL SCROLL
  * ════════════════════════════════════════════════ */
 @media (max-width: 767px) {
-  .panel {
-    width: 150vw;
-  }
-
   .panel--hero, .panel--contact {
     justify-content: center;
     gap: 3vw;

@@ -62,14 +62,19 @@ function App() {
     const track = document.getElementById('track');
     const panels = gsap.utils.toArray('[data-panel]');
 
-    // Calculate actual panel width (accounts for mobile 150vw panels)
-    const getPanelWidth = () => {
-      if (panels.length === 0) return window.innerWidth;
-      return panels[0].offsetWidth;
-    };
+    // Horizontal travel = one viewport width per panel gap. Panels are exactly
+    // 100vw wide (see CSS), so this lands every panel dead-centre in the viewport
+    // at both ends of the scroll — hero at progress 0, contact at progress 1.
+    const dist = () => (panels.length - 1) * window.innerWidth;
 
-    // Exact panel-based scroll distance computation to prevent infinite scrolling
-    const dist = () => (panels.length - 1) * getPanelWidth();
+    // Scroll-distance multiplier: how much vertical scroll maps to the horizontal
+    // travel. Higher = more breathing room between sections. Mobile gets more.
+    const scrollFactor = () => (window.innerWidth <= 767 ? 1.6 : 0.9);
+
+    // Extra scroll room past the last panel so the scrub (which lags ~1s) has
+    // slack to fully settle the final "Let's Talk" panel dead-centre before the
+    // page bottoms out. x still clamps to -dist() at progress 1, so no overshoot.
+    const endPad = () => (window.innerWidth <= 767 ? window.innerHeight * 0.9 : 0);
 
     /* ── Master horizontal scroll ── */
     const scrollTween = gsap.to(track, {
@@ -78,7 +83,7 @@ function App() {
       scrollTrigger: {
         trigger: wrap,
         start: 'top top',
-        end: () => '+=' + dist() * 1.5,
+        end: () => '+=' + (dist() * scrollFactor() + endPad()),
         scrub: 1,
         pin: true,
         anticipatePin: 1,
