@@ -190,7 +190,6 @@ function App() {
 
       {/* ═══ FRAME OVERLAY ═══ */}
       <div className="frame-border"></div>
-      <div className="frame-top-label">Curriculum Vitae — 2026</div>
       <div className="frame-bottom-bar">
         <span>Scroll</span>
         <span className="progress-track"><span className="progress-fill" id="progressFill"></span></span>
