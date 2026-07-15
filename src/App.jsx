@@ -6,6 +6,17 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 function App() {
   const sections = [
     {
+      id: 'experience',
+      label: 'Experience',
+      items: [
+        { role: 'SEO Consultant', place: 'GAIN', dates: '2023 — Present' },
+        { role: 'SEO Account Manager', place: 'Vooba', dates: '2019 — 2023' },
+        { role: 'Production Coordinator', place: 'Cornberry', dates: '2018 — 2019' },
+        { role: 'Lead Digital Co-ordinator', place: 'boxChilli', dates: '2017 — 2018' },
+        { role: 'Client & Marketing Assistant', place: 'boxChilli', dates: '2016 — 2017' }
+      ]
+    },
+    {
       id: 'me',
       label: 'Me',
       body: "After a decade in marketing, I’ve spent the last seven years specializing in SEO. I still have that itch to get under the hood of a fresh site and figure out why it's not performing. I thrive on the discovery phase and big picture brand strategy. Building the roadmap for success, all while leaning into the meaningful relationships I build with my key contacts along the way."
@@ -231,7 +242,19 @@ function App() {
               <div className="section-block">
                 <h2 data-reveal data-drift="-95" className="heading heading--section">{sec.label}</h2>
                 <div data-reveal data-drift="-60" className="divider"></div>
-                <p data-reveal data-drift="-40" className="body-text">{sec.body}</p>
+                {sec.items ? (
+                  <ul data-reveal data-drift="-40" className="experience-list">
+                    {sec.items.map((item) => (
+                      <li key={`${item.role}-${item.dates}`}>
+                        <span className="exp-role">{item.role}</span>
+                        <span className="exp-place">{item.place}</span>
+                        <span className="exp-dates">{item.dates}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p data-reveal data-drift="-40" className="body-text">{sec.body}</p>
+                )}
               </div>
             </section>
           ))}

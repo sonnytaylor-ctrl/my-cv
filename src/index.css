@@ -195,6 +195,43 @@ body::-webkit-scrollbar { width: 0; }
   color: #ffffff;
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
 }
+.experience-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.experience-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(57, 255, 20, 0.25);
+}
+.experience-list li:first-child { padding-top: 0; }
+.experience-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.exp-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(19px, 1.8vw, 26px);
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+}
+.exp-place {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 1.4vw, 21px);
+  font-style: italic;
+  color: #39ff14;
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
+}
+.exp-dates {
+  margin-left: auto;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 1.1vw, 16px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
 .contact-link {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(22px, 2.2vw, 30px); font-weight: 500;
@@ -373,6 +410,16 @@ body::-webkit-scrollbar { width: 0; }
     font-size: clamp(12px, 3.2vw, 15px);
     max-width: 50ch;
   }
+
+  .experience-list li {
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    padding: 10px 0;
+  }
+
+  .exp-role { font-size: 17px; }
+  .exp-place { font-size: 14px; }
+  .exp-dates { font-size: 11px; }
 
   .scroll-hint {
     font-size: 11px;
