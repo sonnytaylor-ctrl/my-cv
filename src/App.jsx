@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Dither from './components/Dither/Dither';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
 function App() {
   const sections = [
@@ -54,20 +55,22 @@ function App() {
   ];
 
   useEffect(() => {
-    // Generate preloader bars dynamically
-    const barHeights = [30, 72, 48, 104, 60, 86, 40, 112, 54, 80, 36, 94, 64, 46, 90];
-    const barsContainer = document.getElementById('preloaderBars');
-    if (barsContainer && barsContainer.children.length === 0) {
-      barHeights.forEach((h, i) => {
-        const bar = document.createElement('div');
-        bar.className = 'preloader-bar';
-        bar.style.height = h + 'px';
-        bar.style.animation = `preloaderBars 1.3s cubic-bezier(0.7, 0, 0.2, 1) ${(0.8 + i * 0.055).toFixed(2)}s forwards`;
-        barsContainer.appendChild(bar);
-      });
-    }
+    gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    gsap.registerPlugin(ScrollTrigger);
+    // Split a heading into characters and rise them in. Used for both the
+    // scroll-triggered section headings and the on-load hero heading. The parent
+    // <h1>/<h2> keeps its own transform (drift) — we only animate the char spans,
+    // so this never fights the horizontal scroll rig.
+    const splits = [];
+    const revealHeading = (heading, extra = {}) => {
+      if (!heading) return;
+      const split = new SplitText(heading, { type: 'chars', charsClass: 'split-char' });
+      splits.push(split);
+      gsap.fromTo(split.chars,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.03, ease: 'power3.out', ...extra }
+      );
+    };
 
     const wrap = document.getElementById('pinWrap');
     const track = document.getElementById('track');
@@ -108,10 +111,17 @@ function App() {
 
     /* ── Per-panel content reveals ── */
     panels.forEach((panel, i) => {
-      if (i === 0) return; // Hero is handled after preloader finishes
-      const els = panel.querySelectorAll('[data-reveal]');
+      if (i === 0) return; // Hero is handled separately below
+      const heading = panel.querySelector('.heading');
+      const els = [...panel.querySelectorAll('[data-reveal]')].filter((el) => el !== heading);
       const isEven = (i - 1) % 2 === 0;
       const startY = isEven ? 70 : -70;
+      const trigger = {
+        trigger: panel,
+        containerAnimation: scrollTween,
+        start: 'left 62%',
+        toggleActions: 'play none none reverse',
+      };
       gsap.fromTo(els,
         { y: startY, opacity: 0 },
         {
@@ -120,14 +130,10 @@ function App() {
           duration: 1.1,
           stagger: 0.12,
           ease: 'power3.out',
-          scrollTrigger: {
-            trigger: panel,
-            containerAnimation: scrollTween,
-            start: 'left 62%',
-            toggleActions: 'play none none reverse',
-          },
+          scrollTrigger: trigger,
         }
       );
+      revealHeading(heading, { scrollTrigger: { ...trigger } });
     });
 
     /* ── Scrub-linked drift on marked elements (skip hero) ── */
@@ -155,23 +161,26 @@ function App() {
       );
     });
 
-    /* ── Hero reveals after preloader clears ── */
-    const heroReveals = panels[0].querySelectorAll('[data-reveal]');
+    /* ── Hero reveals on load ── */
+    const heroHeading = panels[0].querySelector('.heading');
+    const heroReveals = [...panels[0].querySelectorAll('[data-reveal]')].filter((el) => el !== heroHeading);
     gsap.fromTo(heroReveals,
       { y: 70, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.1, stagger: 0.14, ease: 'power3.out', delay: 2.4 }
+      { y: 0, opacity: 1, duration: 1.1, stagger: 0.14, ease: 'power3.out', delay: 0.2 }
     );
+    revealHeading(heroHeading, { delay: 0.4 });
 
     /* ── Music widget slides in ── */
     const music = document.getElementById('musicWidget');
     if (music) {
       gsap.fromTo(music,
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 3.1 }
+        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
       );
     }
 
     return () => {
+      splits.forEach((s) => s.revert());
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
@@ -191,12 +200,6 @@ function App() {
           waveFrequency={3}
           waveSpeed={0.03}
         />
-      </div>
-
-      {/* ═══ PRELOADER ═══ */}
-      <div className="preloader" id="preloader">
-        <div className="preloader-bars" id="preloaderBars"></div>
-        <div className="preloader-name">Hello!</div>
       </div>
 
       {/* ═══ FRAME OVERLAY ═══ */}
@@ -222,7 +225,7 @@ function App() {
           <section className="panel panel--hero" data-panel id="panel-hero">
             <div data-reveal data-drift="130" data-rot="2.5" className="photo-frame">
               <div className="photo-filter">
-                <img src="/assets/sonny_bw.jpg" alt="Sonny Taylor" id="hero-photo" />
+                <img src="/assets/sonny.jpg" alt="Sonny Taylor" id="hero-photo" />
               </div>
               <div className="photo-frame-inset"></div>
             </div>
@@ -263,7 +266,7 @@ function App() {
           <section className="panel panel--contact" data-panel id="panel-contact">
             <div data-reveal data-drift="130" data-rot="-2.5" className="photo-frame">
               <div className="photo-filter">
-                <img src="/assets/sonny_bw.jpg" alt="Sonny Taylor" id="contact-photo" />
+                <img src="/assets/sonny.jpg" alt="Sonny Taylor" id="contact-photo" />
               </div>
               <div className="photo-frame-inset"></div>
             </div>
