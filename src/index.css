@@ -393,13 +393,17 @@ body::-webkit-scrollbar { width: 0; }
     max-width: 50ch;
   }
 
+  /* Two-line rows on mobile: role on its own line, company + dates below.
+     Prevents long roles like "Client & Marketing Assistant" from shoving
+     the company onto an awkward wrapped line. */
   .experience-list li {
     flex-wrap: wrap;
-    gap: 4px 10px;
-    padding: 10px 0;
+    align-items: baseline;
+    gap: 2px 10px;
+    padding: 12px 0;
   }
 
-  .exp-role { font-size: 17px; }
+  .exp-role { font-size: 17px; flex-basis: 100%; }
   .exp-place { font-size: 14px; }
   .exp-dates { font-size: 11px; }
 
